@@ -11,5 +11,5 @@ class Contact(models.Model):
     timestamp=models.DateTimeField(auto_now_add=True,blank=True)
 
     def __str__(self):
-        return self.name
+        return(f"message from-{self.name} with email-{self.email}")
     
