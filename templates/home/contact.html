@@ -3,6 +3,14 @@
 {% block title %} Contact {% endblock title%}
 
 {% block body %}
+{% for message in messages %}
+<div class="mb-0 alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+  <strong></strong> {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
 <div class="container my-4">
 <h3 class="ml-3">Contact iCoder Admin</h3>
 <form class="col-md-6" action="/contact" method="POST">   
