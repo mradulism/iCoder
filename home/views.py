@@ -8,7 +8,6 @@ def home(request):
     return render(request,'home/home.html')
 
 def contact(request):
-    messages.error(request,'oops!!!')
     if request.method=="POST":
         name=request.POST.get('name','')
         email=request.POST.get('email','')
