@@ -27,6 +27,12 @@ def about(request):
 def search(request):
     
     query=request.GET.get('search','')
-    allPosts=Post.objects.filter(content__icontains=query)
+    if(len(query)>80):
+        allPosts=[]
+    else:
+        allPostsContent=Post.objects.filter(content__icontains=query)
+        allPostsTitle = Post.objects.filter(title__icontains=query)
+        allPostsCategory = Post.objects.filter(category__icontains=query)
+        allPosts= allPostsTitle.union(allPostsContent,allPostsCategory)
     params={'allPosts':allPosts,'query':query}
     return render(request,'home/search.html',params)

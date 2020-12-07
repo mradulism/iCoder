@@ -5,8 +5,10 @@
 
 
 <div class="container my-2">
-    <h2>Your results for query-{{query}}</h2>
-    <div class="row">
+
+    {% if allPosts|length != 0 %}
+      <h2 class="mb-4">Your results for query-{{query}}<small><strong class="mx-1">({{allPosts|length}} results found)</strong></small></h2> 
+      <div class="row">
       {% for post in allPosts  %}
       <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
@@ -22,11 +24,11 @@
               </div>
             </div>
           </div>
-      </div>
-      
-      
+      </div>  
       {% endfor %}
-        
+    {% else %}
+      <h2 class="mb-4">No results found for your query-<small><strong class="mx-1">{{query}}</strong></small></h2>
+    {% endif %}    
       
     </div>
 </div>
