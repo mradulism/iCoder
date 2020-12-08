@@ -3,7 +3,7 @@
 {% block title %}blogHome{% endblock title %}
 {% block body %}
 {% for message in messages %}
-<div class="alert alert-{{message.tags}}" role="alert">
+<div class="text-center alert my-0 alert-{{message.tags}}" role="alert">
   {{message}}
 </div>
 {% endfor %}

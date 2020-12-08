@@ -3,9 +3,11 @@ from django.http import request,HttpResponse
 # Create your views here.
 from .models import Contact
 from django.contrib.auth.models import User
-from django.contrib import messages
-from blog. models import Post
 from django.contrib.auth import authenticate,login,logout
+from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login,logout
+from blog. models import Post
 
 def home(request):
     return render(request,'home/home.html')
@@ -58,6 +60,7 @@ def handleSignup(request):
             return redirect('/blog')
         if (pass1 != pass2):
             messages.error(request,"Passwords don't match")
+            
             return redirect('/blog')    
 
         # create user
@@ -80,6 +83,7 @@ def handleLogin(request):
         user=authenticate(username=loginusername,password=loginpassword)
         if user is not None:
             login(request,user)
+            
             messages.success(request,"successfully logged in")
             return redirect('/blog')
         else:
