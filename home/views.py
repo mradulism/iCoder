@@ -5,6 +5,7 @@ from .models import Contact
 from django.contrib.auth.models import User
 from django.contrib import messages
 from blog. models import Post
+from django.contrib.auth import authenticate,login,logout
 
 def home(request):
     return render(request,'home/home.html')
@@ -48,7 +49,16 @@ def handleSignup(request):
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
 
-        # checks for erroneous inputs
+        # checks for erroneous input
+        if len(username)<10:
+            messages.error(request,"username must be more than 10 characters")
+            return redirect('/blog')
+        if (not username.isalnum()):
+            messages.error(request,"username should only contain letters and numbers")
+            return redirect('/blog')
+        if (pass1 != pass2):
+            messages.error(request,"Passwords don't match")
+            return redirect('/blog')    
 
         # create user
         myuser= User.objects.create_user(username,email,pass1)
@@ -56,7 +66,30 @@ def handleSignup(request):
         myuser.last_name=lname
         myuser.save()
         messages.success(request, 'Your account has been created')
-        print("successful")
+       
         return redirect('/blog')
     else:
         return HttpResponse("404 - Not Found")
+
+
+def handleLogin(request):
+    if request.method== "POST":
+        loginusername = request.POST['loginusername']
+        loginpassword = request.POST['loginpassword']
+
+        user=authenticate(username=loginusername,password=loginpassword)
+        if user is not None:
+            login(request,user)
+            messages.success(request,"successfully logged in")
+            return redirect('/blog')
+        else:
+            messages.error(request,"invalid credentials...please try again")
+            return redirect('/blog')
+
+    return HttpResponse("login")
+
+def handleLogout(request):
+    # if request.method=="POST":
+    logout(request)
+    messages.success(request,"logged out")
+    return redirect('/blog')

@@ -70,28 +70,28 @@
             {% csrf_token %}
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="text" class="form-control" id="username" name="username" placeholder="shubham_9991">
+              <input type="text" class="form-control" id="username" name="username" placeholder="shubham_9991" required>
             </div>
             <div class="form-group">
               <label for="fname">First Name</label>
-              <input type="text" class="form-control" id="fname" name="fname" placeholder="shubham">
+              <input type="text" class="form-control" id="fname" name="fname" placeholder="shubham" required>
             </div>
             <div class="form-group">
               <label for="lname">Last Name</label>
-              <input type="text" class="form-control" id="lname" name="lname" placeholder="deshmukh">
+              <input type="text" class="form-control" id="lname" name="lname" placeholder="deshmukh" required>
             </div>
             <div class="form-group">
               <label for="email">Email address</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+              <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
             </div>
 
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Password">
+              <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Password" required>
             </div>
             <div class="form-group">
               <label for="password">Confirm Password</label>
-              <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Confirm Password">
+              <input type="password" class="form-control" id="pass2" name="pass2" placeholder="Confirm Password" required>
             </div>
 
             <button type="submit" class="btn btn-primary">Register</button>
@@ -120,11 +120,11 @@
             {% csrf_token %}
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="text" class="form-control" id="loginusername" name="loginusername">
+              <input type="text" class="form-control" id="loginusername" name="loginusername" required>
             </div>
             <div class="form-group">
               <label for="loginpassword">Enter Password</label>
-              <input type="password" class="form-control" id="loginpassword" name="loginpassword">
+              <input type="password" class="form-control" id="loginpassword" name="loginpassword" required>
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
 
