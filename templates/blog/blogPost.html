@@ -33,8 +33,23 @@
         </blockquote>
         <p>{{post.content}}</p>
 </div>
-<div class="container">
+<hr class="my-4">
+<div class="container border border-primary rounded">
   <h2>Comments</h2>
+  {% for message in messages %}
+  <div class="text-center alert my-2 col-5 alert-{{message.tags}}" role="alert">
+  {{message}}
+  </div>
+  {% endfor %}
+  
+  <form action="/blog/postComment" method="post">
+  {% csrf_token %}
+
+  <input type="text" name="comment" id="comment">
+  <input type="hidden" name="postSno" id="postSno" value="{{post.sno}}">
+  <input type="submit" value="Comment">
+
+  </form>
   <div class="row my-3">
     <div class="col-md-2">Image here</div>
     <div class="col-md-10">This is a comment by rohan das</div>

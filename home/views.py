@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from blog. models import Post
 
+# HTML Pages
 def home(request):
     return render(request,'home/home.html')
 
@@ -41,6 +42,7 @@ def search(request):
     params={'allPosts':allPosts,'query':query}
     return render(request,'home/search.html',params)
 
+# Authentication API's
 def handleSignup(request):
     if request.method == "POST":
         # get the parameters
@@ -97,3 +99,4 @@ def handleLogout(request):
     logout(request)
     messages.success(request,"logged out")
     return redirect('/blog')
+
