@@ -1,8 +1,13 @@
 {% extends 'home/basic.html' %}
 {% block title %}BlogPost{% endblock title %}
 
+{% block css %}
+
+{% endblock css %}
+
 {% block body %}
 
+{% load static %}
 <div class="container my-3">
 <div class="col-md-4">
     <div class="card mb-4 shadow-sm">
@@ -34,28 +39,44 @@
         <p>{{post.content}}</p>
 </div>
 <hr class="my-4">
-<div class="container border border-primary rounded">
-  <h2>Comments</h2>
+<div class="container border border-dark rounded " style="margin-bottom:10%">
+  <h3 class="my-3 font-weight-bold">Comments</h3>
   {% for message in messages %}
   <div class="text-center alert my-2 col-5 alert-{{message.tags}}" role="alert">
   {{message}}
   </div>
   {% endfor %}
   
-  <form action="/blog/postComment" method="post">
+  <!-- comment form starts here -->
+  <form class="my-3" action="/blog/postComment" method="post">
   {% csrf_token %}
-
-  <input type="text" name="comment" id="comment">
-  <input type="hidden" name="postSno" id="postSno" value="{{post.sno}}">
-  <input type="submit" value="Comment">
-
+    <div class=" form-group">
+      <label for="exampleInputEmail1">Post Comment</label>
+      <input class="form-control" type="text" name="comment" id="comment">
+    </div>
+    <input type="hidden" name="postSno" id="postSno" value="{{post.sno}}">
+    <button type="submit" class="btn btn-primary">Comment</button>
   </form>
-  <div class="row my-3">
-    <div class="col-md-2">Image here</div>
-    <div class="col-md-10">This is a comment by rohan das</div>
-  </div>
-</div>
+  <hr class="w-100">
+  <!-- comment form ends here -->
 
+  <!-- comments section starts here -->
+  {% for i in comments  %}
+    <div class="row mt-3 mb-0 px-1 py-1" style="background-color: antiquewhite;">
+      <div class="col-md-1">
+      <img class="w-75 h-75 rounded-circle" style="padding-top:6px;" src="{% static '/blog/anushka.jpg' %}" alt="...">
+      </div>
+      
+      <div class="col-md-11 pt-2"><b>{{i.user.username}}</b><small class="mx-2" style="color:blue;">{{i.timestamp}}</small>
+      <div><p>{{i.comment}}</p></div>
+      </div>
+      
+    </div>
+    
+  {% endfor %}
+  <!-- comment section ends here -->
+  
+</div>
 
 {% endblock body %}
 
