@@ -9,3 +9,4 @@ urlpatterns = [
     path('postComment',views.postComment,name="postComment"),
     path('<str:slug>', views.blogPost,name="blogPost"),
 ]
+#hello
